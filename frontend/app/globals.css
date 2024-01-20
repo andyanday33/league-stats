@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  --background: #010a13;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,6 +15,7 @@
 }
 
 body {
+  background-color: var(--background);
 }
 
 @layer utilities {

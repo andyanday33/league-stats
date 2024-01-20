@@ -14,8 +14,9 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        blue: {
+        leagueBlue: {
           "100": "#CDFAFA",
+          "150": "#010a13",
           "200": "#0AC8B9",
           "300": "#0397AB",
           "400": "#005A82",
@@ -23,7 +24,7 @@ const config: Config = {
           "600": "#091428",
           "700": "#0A1428",
         },
-        gold: {
+        leagueGold: {
           "100": "#F0E6D2",
           "200": "#C8AA6E",
           "300": "#C8AA6E",
@@ -32,7 +33,7 @@ const config: Config = {
           "600": "#463714",
           "700": "#32281E",
         },
-        grey: {
+        leagueGray: {
           "100": "#A09B8C",
           "150": "#5B5A56",
           "200": "#3C3C41",
