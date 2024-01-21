@@ -9,7 +9,6 @@ type Props = {};
 
 export const Navbar = (props: Props) => {
   const pathname = usePathname();
-  console.log(pathname);
 
   return (
     <div className="w-full h-20">
