@@ -4,11 +4,14 @@ import Link from "next/link";
 import clsx from "clsx";
 import React from "react";
 import { usePathname } from "next/navigation";
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 
 type Props = {};
 
 export const Navbar = (props: Props) => {
   const pathname = usePathname();
+
+  const [isFocused, setIsFocused] = React.useState(false);
 
   return (
     <div className="w-full h-20">
@@ -72,6 +75,51 @@ export const Navbar = (props: Props) => {
               </p>
             </li>
           </Link>
+          <div className="h-full relative group">
+            <div className="flex items-center h-full cursor-default">
+              <div className="flex border border-leagueGold-500/35 divide-x divide-leagueGold-500/35">
+                <select
+                  onFocus={() => setIsFocused(true)}
+                  onBlur={() => setIsFocused(false)}
+                  tabIndex={1}
+                  className="bg-transparent text-text-primary px-2 focus:outline-leagueGold-400 focus:border-leagueGold-400 focus:shadow-leagueGold-400"
+                >
+                  <option>NA</option>
+                  <option>EUW</option>
+                  <option>EUNE</option>
+                  <option>KR</option>
+                  <option>JP</option>
+                  <option>BR</option>
+                  <option>LAN</option>
+                  <option>RU</option>
+                  <option>TR</option>
+                  <option>OCE</option>
+                </select>
+                <input
+                  onFocus={() => setIsFocused(true)}
+                  onBlur={() => setIsFocused(false)}
+                  tabIndex={2}
+                  type="text"
+                  placeholder="Search for a Summoner"
+                  className="bg-transparent p-4 text-text-primary placeholder:text-text-primary/75 focus:outline-leagueGold-400 focus:border-leagueGold-400 focus:shadow-leagueGold-400"
+                />
+                <button
+                  onFocus={() => setIsFocused(true)}
+                  onBlur={() => setIsFocused(false)}
+                  tabIndex={3}
+                  className="p-4 group/button hover:bg-gradient-to-t from-leagueGray-100/25 to-leagueGray-hextech-black to-55%"
+                >
+                  <MagnifyingGlassIcon className="w-6 h-6 text-text-primary/75 group-hover/button:text-text-primary" />
+                </button>
+              </div>
+            </div>
+            <div
+              className={clsx(
+                `absolute w-full h-96 top-full border border-leagueGold-500/35 group-hover:flex`,
+                isFocused ? "flex" : "hidden"
+              )}
+            ></div>
+          </div>
         </ul>
       </nav>
       <hr className="w-full h-[0.5px] bg-leagueGold-500 opacity-35" />
