@@ -14,6 +14,10 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
+        text: {
+          primary: "#F0E6D2",
+          hover: "#A09B8C",
+        },
         leagueBlue: {
           "100": "#CDFAFA",
           "150": "#010a13",
