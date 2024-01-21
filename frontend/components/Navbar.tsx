@@ -115,7 +115,7 @@ export const Navbar = (props: Props) => {
             </div>
             <div
               className={clsx(
-                `absolute w-full h-96 top-full border border-leagueGold-500/35 group-hover:flex`,
+                `absolute w-full h-96 top-full border border-leagueGold-500/35`,
                 isFocused ? "flex" : "hidden"
               )}
             ></div>
