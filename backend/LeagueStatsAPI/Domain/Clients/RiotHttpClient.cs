@@ -2,6 +2,7 @@ using System.Text.Json;
 using Domain.Enums;
 using Domain.Config;
 using Domain.Models;
+using Domain.RiotApiModels;
 
 namespace Domain.Clients;
 
@@ -16,7 +17,7 @@ public class RiotHttpClient
         _riotConfig = riotConfig;
     }
 
-    public async Task<Summoner> GetSummonerByName(string summonerName, string tagLine, Region region)
+    public async Task<SummonerByPuuid> GetSummonerByName(string summonerName, string tagLine, Region region)
     {
         // TODO: Implement region checks
         var apiZone = APIZone.europe;
@@ -27,8 +28,11 @@ public class RiotHttpClient
         var response = await _httpClient.SendAsync(request);
         response.EnsureSuccessStatusCode();
         
+        Console.WriteLine("Response:");
+        Console.WriteLine(await response.Content.ReadAsStringAsync());
+        
         var responseString = await response.Content.ReadAsStringAsync();
-        var summoner = JsonSerializer.Deserialize<Summoner>(responseString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        var summoner = JsonSerializer.Deserialize<SummonerByPuuid>(responseString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         return summoner!;
     }
 }

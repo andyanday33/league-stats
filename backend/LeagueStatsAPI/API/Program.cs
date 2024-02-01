@@ -1,5 +1,6 @@
 
 using Application.Handlers;
+using Domain.Clients;
 using Domain.Config;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -7,13 +8,18 @@ using Persistence;
 var builder = WebApplication.CreateBuilder(args);
 
 var riotConfig = new RiotConfig();
+var riotHttpClient = new RiotHttpClient(new HttpClient(), riotConfig);
+
 builder.Configuration.GetSection("RiotConfig").Bind(riotConfig);
 builder.Services.AddSingleton(riotConfig);
+builder.Services.AddSingleton(riotHttpClient);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddControllers();
 
 builder.Services.AddDbContext<SummonerDbContext>(opt =>
 {
@@ -33,6 +39,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.MapControllers();
 
 app.UseHttpsRedirection();
 
