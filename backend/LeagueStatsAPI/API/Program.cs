@@ -1,3 +1,5 @@
+
+using Application.Handlers;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
@@ -11,6 +13,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<SummonerDbContext>(opt =>
 {
     opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssembly(typeof(GetSummonerQueryHandler).Assembly);
 });
 
 var app = builder.Build();
