@@ -1,6 +1,6 @@
 
-using API.Config;
 using Application.Handlers;
+using Domain.Config;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
