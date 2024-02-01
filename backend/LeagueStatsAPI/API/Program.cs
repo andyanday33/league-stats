@@ -1,9 +1,14 @@
 
+using API.Config;
 using Application.Handlers;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var riotConfig = new RiotConfig();
+builder.Configuration.GetSection("RiotConfig").Bind(riotConfig);
+builder.Services.AddSingleton(riotConfig);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
