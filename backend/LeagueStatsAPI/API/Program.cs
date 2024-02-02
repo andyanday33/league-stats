@@ -1,5 +1,5 @@
-
 using Application.Handlers;
+using Application.Profiles;
 using Infrastructure.Clients;
 using Infrastructure.Config;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +13,8 @@ var riotHttpClient = new RiotHttpClient(new HttpClient(), riotConfig);
 builder.Configuration.GetSection("RiotConfig").Bind(riotConfig);
 builder.Services.AddSingleton(riotConfig);
 builder.Services.AddSingleton(riotHttpClient);
+
+builder.Services.AddAutoMapper(typeof(SummonerMappingProfile));
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
