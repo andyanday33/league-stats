@@ -20,7 +20,7 @@ public class SummonerController
     }
 
     [HttpGet("{region}/{summonerName}")]
-    public async Task<IActionResult> GetSummonerByName(string summonerName, Region region)
+    public async Task<IActionResult> GetSummonerByName(string summonerName, string region)
     {
         var summoner = await _mediator.Send(new GetSummonerQuery { SummonerName = summonerName, Region = region });
         return new OkObjectResult(_mapper.Map<SummonerDTO>(summoner));

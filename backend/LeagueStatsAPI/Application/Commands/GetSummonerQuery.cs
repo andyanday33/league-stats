@@ -7,5 +7,6 @@ namespace Application.Commands;
 public class GetSummonerQuery: IRequest<Summoner>
 {
     public string SummonerName { get; set; }
-    public Region Region { get; set; } // TODO: Make this more obvious for frontend
+    
+    public string Region { get; set; } // TODO: Make this more obvious for frontend
 }

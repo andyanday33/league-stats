@@ -1,4 +1,5 @@
 using Application.Commands;
+using Domain.Enums;
 using Infrastructure.Clients;
 using Domain.Models;
 using MediatR;
@@ -20,7 +21,16 @@ public class GetSummonerQueryHandler : IRequestHandler<GetSummonerQuery, Summone
         if (!summonerName.Contains('#')) throw new ArgumentException("Summoner name is not valid");
         
         var summonerNameSplit = summonerName.Split('#');
-        var summoner = await _riotHttpClient.GetSummonerByName(summonerNameSplit[0], summonerNameSplit[1], request.Region);
+
+        var region = request.Region switch
+        {
+            "TR" => Region.TR,
+            "EUW" => Region.EUW,
+            "EUNE" => Region.EUNE,
+            "NA" => Region.NA, // TODO: Add more regions
+        };
+        
+        var summoner = await _riotHttpClient.GetSummonerByName(summonerNameSplit[0], summonerNameSplit[1], region);
         
         return new Summoner
         {
