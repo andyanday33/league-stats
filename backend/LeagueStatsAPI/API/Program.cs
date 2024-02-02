@@ -1,7 +1,7 @@
 
 using Application.Handlers;
-using Domain.Clients;
-using Domain.Config;
+using Infrastructure.Clients;
+using Infrastructure.Config;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 

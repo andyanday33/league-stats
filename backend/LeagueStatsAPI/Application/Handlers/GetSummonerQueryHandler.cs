@@ -1,6 +1,5 @@
 using Application.Commands;
-using Domain.Clients;
-using Domain.Config;
+using Infrastructure.Clients;
 using Domain.Models;
 using MediatR;
 

@@ -1,10 +1,9 @@
 using System.Text.Json;
 using Domain.Enums;
-using Domain.Config;
-using Domain.Models;
+using Infrastructure.Config;
 using Domain.RiotApiModels;
 
-namespace Domain.Clients;
+namespace Infrastructure.Clients;
 
 public class RiotHttpClient
 {

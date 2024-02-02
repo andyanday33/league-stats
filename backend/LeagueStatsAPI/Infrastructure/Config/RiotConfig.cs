@@ -1,4 +1,4 @@
-namespace Domain.Config;
+namespace Infrastructure.Config;
 
 public class RiotConfig
 {
