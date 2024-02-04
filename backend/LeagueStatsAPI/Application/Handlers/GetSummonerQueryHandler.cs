@@ -1,4 +1,4 @@
-using Application.Commands;
+using Application.Queries;
 using Domain.Enums;
 using Infrastructure.Clients;
 using Domain.Models;
@@ -22,15 +22,7 @@ public class GetSummonerQueryHandler : IRequestHandler<GetSummonerQuery, Summone
         
         var summonerNameSplit = summonerName.Split('#');
 
-        var region = request.Region switch
-        {
-            "TR" => Region.TR,
-            "EUW" => Region.EUW,
-            "EUNE" => Region.EUNE,
-            "NA" => Region.NA, // TODO: Add more regions
-        };
-        
-        var summoner = await _riotHttpClient.GetSummonerByName(summonerNameSplit[0], summonerNameSplit[1], region);
+        var summoner = await _riotHttpClient.GetSummonerByName(summonerNameSplit[0], summonerNameSplit[1], request.Region);
         
         return new Summoner
         {

@@ -16,7 +16,7 @@ public class RiotHttpClient
         _riotConfig = riotConfig;
     }
 
-    public async Task<SummonerByPuuid> GetSummonerByName(string summonerName, string tagLine, Region region)
+    public async Task<SummonerPuuid> GetSummonerByName(string summonerName, string tagLine, Region region)
     {
         // TODO: Implement region checks
         var apiZone = APIZone.europe;
@@ -31,7 +31,23 @@ public class RiotHttpClient
         Console.WriteLine(await response.Content.ReadAsStringAsync());
         
         var responseString = await response.Content.ReadAsStringAsync();
-        var summoner = JsonSerializer.Deserialize<SummonerByPuuid>(responseString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        var summoner = JsonSerializer.Deserialize<SummonerPuuid>(responseString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        return summoner!;
+    }
+
+    public async Task<SummonerProfile> GetSummonerProfileByPuuid(string puuid, Region region)
+    {
+        var url = $"https://{region.ToString()}.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/{puuid}";
+        var request = new HttpRequestMessage(HttpMethod.Get, url);
+        request.Headers.Add("X-Riot-Token", _riotConfig.APIKey);
+        var response = await _httpClient.SendAsync(request);
+        response.EnsureSuccessStatusCode();
+        
+        Console.WriteLine("Response:");
+        Console.WriteLine(await response.Content.ReadAsStringAsync());
+        
+        var responseString = await response.Content.ReadAsStringAsync();
+        var summoner = JsonSerializer.Deserialize<SummonerProfile>(responseString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         return summoner!;
     }
 }

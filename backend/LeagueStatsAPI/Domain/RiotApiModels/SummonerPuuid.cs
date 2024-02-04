@@ -1,6 +1,8 @@
+using Domain.Contracts;
+
 namespace Domain.RiotApiModels;
 
-public class SummonerByPuuid
+public class SummonerPuuid : IRiotObject
 {
     public string Puuid { get; set; }
     public string GameName { get; set; }
